@@ -2,7 +2,7 @@ import kotlin.random.Random
 
 class Perceptron (n: Int){
     val weights = arrayListOf<Double>()
-    private var c = 0.01
+    private var c = 0.001
 
     init {
         for (i in 0 until n) {
@@ -28,6 +28,6 @@ class Perceptron (n: Int){
         }
     }
 
-    fun guessY(x: Int): Double = -(weights[2]/weights[1]) - (weights[0]/weights[1]) * x
-
+    fun guessY(x: Int): Double = -(weights[0]/weights[1]) * x -(weights[2]/weights[1])
+    fun getGuessY() = String.format("%.3f", -(weights[0]/weights[1]))+ "x + " + String.format("%.3f", -(weights[2]/weights[1]))
 }

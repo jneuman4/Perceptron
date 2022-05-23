@@ -10,10 +10,11 @@ fun main(){
 
     SwingUtilities.invokeLater {
         val f = JFrame()
+        val gui = GUI ()
         f.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-        f.title = "Perceptron"
+        f.title = "Perceptron: ${gui.getF()}"
         f.isResizable = false
-        f.add(GUI (), BorderLayout.CENTER)
+        f.add(gui, BorderLayout.CENTER)
         f.pack()
         f.setLocationRelativeTo(null)
         f.isVisible = true

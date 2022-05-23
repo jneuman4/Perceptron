@@ -39,6 +39,7 @@ class GUI: JPanel() {
     }
 
     private fun f (x: Double) = m*x+b
+    fun getF () = String.format("%.3f", m) + "x + " + String.format("%.3f", b)
 
 
     override fun paintComponent(gg: Graphics) {
@@ -50,30 +51,31 @@ class GUI: JPanel() {
         )
 
 
+        //Richtige Linie
         g.stroke = BasicStroke(2F)
         g.color = Color.orange
-        //Richtige Linie
         var x1 = map(xmin, xmin, xmax, 0.0, width.toDouble())
         var y1 = map(f(xmin), ymin, ymax, height.toDouble(), 0.0)
         var x2 = map(xmax, xmin, xmax, 0.0, width.toDouble())
         var y2 = map(f(xmax), ymin, ymax, height.toDouble(), 0.0)
         g.drawLine(x1, y1, x2, y2)
-        println(f(0.0))
-        println(y1)
-        println(y2)
+
+
         //Vermutete Linie
         g.color = Color.red
         g.stroke = BasicStroke(1F)
-        //g.drawLine(0, -perc.guessY(0), width, -perc.guessY(width))
-
         x1 = map(xmin, xmin, xmax, 0.0, width.toDouble())
         y1 = map(perc.guessY(xmin.toInt()), ymin, ymax, height.toDouble(), 0.0)
         x2 = map(xmax, xmin, xmax, 0.0, width.toDouble())
         y2 = map(perc.guessY(xmax.toInt()), ymin, ymax, height.toDouble(), 0.0)
         g.drawLine(x1, y1, x2, y2)
+
+        if (count%25 == 0){
+            println(perc.getGuessY())
+        }
+
         g.stroke = BasicStroke(1F)
         g.color = Color.black
-
         perc.train(training[count].inputs, training[count].answer)
         count = (count + 1) % training.size
 
@@ -85,8 +87,6 @@ class GUI: JPanel() {
             if (guess > 0) g.drawOval(x, y, 8, 8)
             else g.fillOval(x, y, 8, 8)
         }
-
-
 
     }
 
