@@ -2,7 +2,7 @@ import kotlin.random.Random
 
 class Perceptron (n: Int){
     val weights = arrayListOf<Double>()
-    private var c = 0.001
+    private var learningRate = 0.001
 
     init {
         for (i in 0 until n) {
@@ -24,7 +24,7 @@ class Perceptron (n: Int){
         val guess = feedForward(inputs)
         val error = desired - guess
         for (i in 0 until weights.size){
-            weights[i] += c * error * inputs[i]
+            weights[i] += learningRate * error * inputs[i]
         }
     }
 

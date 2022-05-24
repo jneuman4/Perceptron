@@ -8,8 +8,8 @@ class GUI: JPanel() {
 
 
     private val training = arrayListOf<Trainer>()
-    private val perc = Perceptron(3)
-    private var count = 0
+    val perc = Perceptron(3)
+    var count = 0
 
 
     private var xmin = -1.0
@@ -50,6 +50,11 @@ class GUI: JPanel() {
             RenderingHints.VALUE_ANTIALIAS_ON
         )
 
+        //Kartesisches Koordinaten System
+        g.stroke = BasicStroke(0.8F)
+        g.color = Color.black
+        g.drawLine(0, height/2, width, height/2)
+        g.drawLine(width/2, 0, width/2, height)
 
         //Richtige Linie
         g.stroke = BasicStroke(2F)
@@ -70,9 +75,6 @@ class GUI: JPanel() {
         y2 = map(perc.guessY(xmax.toInt()), ymin, ymax, height.toDouble(), 0.0)
         g.drawLine(x1, y1, x2, y2)
 
-        if (count%25 == 0){
-            println(perc.getGuessY())
-        }
 
         g.stroke = BasicStroke(1F)
         g.color = Color.black
